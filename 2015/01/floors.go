@@ -48,5 +48,8 @@ func main() {
 	if s.Scan() {
 		dst := floor(s.Text())
 		fmt.Printf("Santa ended at floor %d\n", dst)
+
+		base := basement(s.Text())
+		fmt.Printf("Santa first went underground at step %d\n", base)
 	}
 }
