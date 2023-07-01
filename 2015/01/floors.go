@@ -1,15 +1,35 @@
 package main
 
+import (
+	"bufio"
+	"fmt"
+	"os"
+)
+
 func floor(s string) int {
 	f := 0
 
 	for _, c := range s {
 		switch c {
 		case '(':
-		f++
+			f++
 		default:
-		f--
+			f--
 		}
 	}
 	return f
+}
+
+func main() {
+	f, err := os.Open("input.txt")
+	if err != nil {
+		panic(err)
+	}
+	defer f.Close()
+
+	s := bufio.NewScanner(f)
+	if s.Scan() {
+		dst := floor(s.Text())
+		fmt.Printf("Santa ended at floor %d\n", dst)
+	}
 }
