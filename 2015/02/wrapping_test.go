@@ -4,8 +4,8 @@ import "testing"
 
 func TestPaper(t *testing.T) {
 	tests := map[string]int {
-		"2x3x4": 52,
-		"1x1x10": 42,
+		"2x3x4": 58,
+		"1x1x10": 43,
 	}
 
 	for tc, want := range tests {
