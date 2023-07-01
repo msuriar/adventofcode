@@ -24,3 +24,16 @@ func TestFloors(t *testing.T) {
 		})
 	}
 }
+
+func TestBasement(t *testing.T) {
+	tests := map[string]int {
+		")": 1,
+	}
+
+	for tc, want := range tests {
+		got := basement(tc)
+		if got != want {
+			t.Errorf("basement(%q) : got %d ; want %d\n", tc, got, want)
+		}
+	}
+}

@@ -20,6 +20,10 @@ func floor(s string) int {
 	return f
 }
 
+func basement(s string) int {
+	return 1
+}
+
 func main() {
 	f, err := os.Open("input.txt")
 	if err != nil {
