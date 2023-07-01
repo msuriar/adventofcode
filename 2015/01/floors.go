@@ -21,7 +21,20 @@ func floor(s string) int {
 }
 
 func basement(s string) int {
-	return 1
+	f := 0
+
+	for i, c := range s {
+		switch c {
+		case '(':
+			f++
+		default:
+			f--
+		}
+		if f < 0 {
+			return i+1
+		}
+	}
+	return f
 }
 
 func main() {

@@ -28,6 +28,7 @@ func TestFloors(t *testing.T) {
 func TestBasement(t *testing.T) {
 	tests := map[string]int {
 		")": 1,
+		"()())": 5,
 	}
 
 	for tc, want := range tests {
