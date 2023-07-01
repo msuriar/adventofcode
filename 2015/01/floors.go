@@ -1,5 +1,15 @@
 package main
 
 func floor(s string) int {
-	return 0
+	f := 0
+
+	for _, c := range s {
+		switch c {
+		case '(':
+		f++
+		default:
+		f--
+		}
+	}
+	return f
 }

@@ -5,6 +5,7 @@ import "testing"
 func TestFloors(t *testing.T) {
 	tests := map[string]int{
 		"(())": 0,
+		"(((": 3,
 	}
 
 	for tc, want := range tests {
