@@ -56,9 +56,32 @@ func (p *Present) Slack() int {
 	return n
 }
 
+func (p *Present) Volume() int {
+	return p.w * p.h * p.d
+}
+
+func (p *Present) SmallPerimeter() int {
+	s1 := 2*(p.w + p.h)
+	s2 := 2*(p.w + p.d)
+	s3 := 2*(p.h + p.d)
+
+	if s1 <= s2 && s1 <= s3 {
+		return s1
+	} else if s2 <= s1 && s2 <= s3 {
+		return s2
+	}
+	return s3
+}
+
 func paper(s string) int {
 	p := NewPresent(s)
 	return 2 * (p.FrontArea() + p.SideArea() + p.TopArea()) + p.Slack()
+}
+
+func ribbon(s string) int {
+	p := NewPresent(s)
+
+	return p.Volume() + p.SmallPerimeter()
 }
 
 func main() {
@@ -71,10 +94,13 @@ func main() {
 	s := bufio.NewScanner(f)
 
 	total_paper := 0
+	total_ribbon := 0
 
 	for s.Scan() {
 		total_paper += paper(s.Text())
+		total_ribbon += ribbon(s.Text())
 	}
 
 	fmt.Printf("Total wrapping paper: %d\n", total_paper)
+	fmt.Printf("Total ribbon: %d\n", total_ribbon)
 }

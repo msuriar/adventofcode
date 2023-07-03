@@ -15,3 +15,17 @@ func TestPaper(t *testing.T) {
 		}
 	}
 }
+
+func TestRibbon(t *testing.T) {
+	tests := map[string]int {
+		"2x3x4": 34,
+		"1x1x10": 14,
+	}
+
+	for tc, want := range tests {
+		got := ribbon(tc)
+		if got != want {
+			t.Errorf("ribbon(%q) : got %d ; want %d\n", tc, got, want)
+		}
+	}
+}
