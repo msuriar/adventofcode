@@ -24,11 +24,11 @@ func (c *Course) Navigate(tc string) {
 		switch r {
 		case '>':
 		c.position.x += 1
-		case 'V':
+		case 'v':
 		c.position.y -= 1
 		case '<':
 		c.position.x -= 1
-		default:
+		case '^':
 		c.position.y += 1
 		}
 

@@ -1,14 +1,18 @@
 package main
 
-import "testing"
+import (
+	"testing"
+)
 
 func TestSoloDeliveries(t *testing.T) {
 	tests := map[string]int{
-		">": 2,
+		">":          2,
+		"^>v<":       4,
+		"^v^v^v^v^v": 2,
 	}
-	
+
 	for tc, want := range tests {
-		t.Run(tc, func (t *testing.T) {
+		t.Run(tc, func(t *testing.T) {
 			c := NewCourse()
 			c.Navigate(tc)
 			got := c.UniqueHouses()
