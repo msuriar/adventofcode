@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"os"
+	"strings"
 )
 
 type Point struct {
@@ -22,6 +23,23 @@ func NewCourse() *Course {
 	c.counts[c.position] += 1
 
 	return c
+}
+
+func (c *Course) PartnerNavigate(tc string) {
+	santa := []string{}
+	robosanta := []string{}
+
+	for i, r := range tc {
+		if i%2 == 0 {
+			santa = append(santa, string(r))
+		} else {
+			robosanta = append(robosanta, string(r))
+		}
+	}
+
+	c.Navigate(strings.Join(santa, ""))
+	c.position = Point{x: 0, y: 0}
+	c.Navigate(strings.Join(robosanta, ""))
 }
 
 func (c *Course) Navigate(tc string) {
@@ -57,4 +75,9 @@ func main() {
 	c.Navigate(string(b))
 
 	fmt.Printf("Single worker, unique houses: %d\n", c.UniqueHouses())
+
+	c2 := NewCourse()
+	c2.PartnerNavigate(string(b))
+
+	fmt.Printf("Two workers, unique houses: %d\n", c2.UniqueHouses())
 }
