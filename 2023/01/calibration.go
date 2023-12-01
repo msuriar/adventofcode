@@ -1,6 +1,11 @@
 package main
 
-import "strconv"
+import (
+	"bufio"
+	"fmt"
+	"os"
+	"strconv"
+)
 
 func calibration_value(s string) int {
 	nums := ""
@@ -10,6 +15,24 @@ func calibration_value(s string) int {
 		}
 	}
 	num := string(nums[0])+string(nums[len(nums)-1])
-	r, _ := strconv.Atoi(num)
+	r, err := strconv.Atoi(num)
+	if err != nil {
+		panic(err)
+	}
 	return r
+}
+
+func main() {
+	f, err := os.Open("input.txt")
+	if err != nil {
+		panic(err)
+	}
+	defer f.Close()
+
+	total := 0
+	s := bufio.NewScanner(f)
+	for s.Scan() {
+		total += calibration_value(s.Text())
+	}
+	fmt.Printf("Total calibration value: %d\n", total)
 }
