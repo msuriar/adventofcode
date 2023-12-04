@@ -11,7 +11,28 @@ func TestCalibrationValues(t *testing.T) {
 	}
 
 	for tc, want := range tests {
-		t.Run(tc, func (t *testing.T) {
+		t.Run(tc, func(t *testing.T) {
+			got := calibration_value(tc)
+			if got != want {
+				t.Errorf("calibration_value(%q): got %d ; want %d\n", tc, got, want)
+			}
+		})
+	}
+}
+
+func TestTextCalibration(t *testing.T) {
+	tests := map[string]int{
+		"two1nine":         29,
+		"eightwothree":     83,
+		"abcone2threexyz":  13,
+		"xtwone3four":      24,
+		"4nineeightseven2": 42,
+		"zoneight234":      14,
+		"7pqrstsixteen":    76,
+	}
+
+	for tc, want := range tests {
+		t.Run(tc, func(t *testing.T) {
 			got := calibration_value(tc)
 			if got != want {
 				t.Errorf("calibration_value(%q): got %d ; want %d\n", tc, got, want)
